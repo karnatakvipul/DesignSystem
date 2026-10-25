@@ -1,0 +1,20 @@
+# Use a modern, lightweight Node.js image
+FROM node:22-alpine
+
+# Set the working directory inside the container
+WORKDIR /library
+
+# Copy package configuration files first to cache dependencies
+COPY package*.json ./
+
+# Install all packages (including devDependencies needed for Storybook)
+RUN npm install
+
+# Copy the rest of your React library source code
+COPY . .
+
+# Expose the default Storybook port
+EXPOSE 6006
+
+# Command to launch your library's development server or Storybook
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

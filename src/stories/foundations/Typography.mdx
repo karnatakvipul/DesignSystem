@@ -1,0 +1,31 @@
+import { Meta, Typeset } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Typography" />
+
+# Type
+
+Five sizes, deliberately short. Long scales invite picking whatever looks
+right in one place, which is how `text-xs`, `text-[11px]` and `text-sm` ended
+up side by side in this codebase with no rule behind any of them.
+
+<Typeset
+  fontFamily="var(--font-sans, system-ui, sans-serif)"
+  fontSizes={["11px", "12px", "14px", "16px", "24px"]}
+  fontWeight={400}
+  sampleText="Manage every software license from one screen."
+/>
+
+| Token | Value | Use for |
+|---|---|---|
+| `text-caption` | 11px | Timestamps, helper text |
+| `text-body-sm` | 12px | Table cells, dense UI |
+| `text-body` | 14px | The default |
+| `text-title` | 16px | Panel and dialog headings |
+| `text-display` | 24px | Page headings |
+
+Named for what the text *is for*, not how big it looks — the same reasoning
+behind every token in this system. A caption and a table cell happen to share
+a similar size class in some type scales; here they're still two different
+tokens, because "how far can this shrink before it stops being legible" and
+"what caption text needs" are different questions that occasionally land on
+the same pixel value by coincidence.

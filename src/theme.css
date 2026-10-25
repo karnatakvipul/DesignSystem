@@ -1,0 +1,304 @@
+/*
+  my Design System UI Library — theme tokens.
+
+  This file is the single source of truth for the CSS variables ThemeProvider
+  swaps at runtime, and the Tailwind v4 `@theme` mapping that turns them into
+  real utility classes (bg-canvas, bg-accent, text-ink-primary, etc.).
+
+  It is consumed two ways:
+    1. Bundled into the library's own compiled CSS (via index.css) so the
+       library's own components always render correctly out of the box.
+    2. Published standalone as `my Design System/theme.css` so consumer
+       apps can @import it into their OWN Tailwind build and get the same
+       utility classes available in their own JSX — see README for setup.
+*/
+
+:root,
+[data-theme="arctic-white"],
+:root[data-theme="arctic-white"] {
+  --chrome-bg: #ffffff;
+  --chrome-deep: #f8fafc;
+  --canvas-bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --accent-primary: #2563eb;
+  --accent-light: #3b82f6;
+  --accent-muted-bg: #eff6ff;
+  --accent-border: #bfdbfe;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-on-chrome: #0f172a;
+  --icon-idle: #94a3b8;
+  --icon-active: #2563eb;
+  --status-online: #15803d;
+  --status-online-bg: #f0fdf4;
+  --status-warn: #a04c08;
+  --status-warn-bg: #fffbeb;
+  --status-offline: #b91c1c;
+  --status-offline-bg: #fef2f2;
+  --live-bg: #f0fdf4;
+  --live-text: #15803d;
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --topbar-border: #e5e7eb;
+  --nav-active: #2563eb;
+  --nav-active-bg: #eff6ff;
+  --nav-active-border: #2563eb;
+  --tag-bg: #eff6ff;
+  --tag-text: #2563eb;
+  --tag-border: #bfdbfe;
+  --input-bg: #f8fafc;
+  --color-scheme: light;
+}
+
+[data-theme="carbon-pro"],
+:root[data-theme="carbon-pro"] {
+  --chrome-bg: #161b22;
+  --chrome-deep: #0d1117;
+  --canvas-bg: #1c2128;
+  --card-bg: #21262d;
+  --card-border: #30363d;
+  --accent-primary: #58a6ff;
+  --accent-light: #79c0ff;
+  --accent-muted-bg: #0d2a1f;
+  --accent-border: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #c9d1d9;
+  --text-muted: #8b949e;
+  --text-on-chrome: #e6edf3;
+  --icon-idle: #484f58;
+  --icon-active: #58a6ff;
+  --status-online: #34d399;
+  --status-online-bg: #0d2a1f;
+  --status-warn: #fbbf24;
+  --status-warn-bg: #1f1a00;
+  --status-offline: #f87171;
+  --status-offline-bg: #1f0a0a;
+  --live-bg: #0d2a1f;
+  --live-text: #34d399;
+  --sidebar-bg: #161b22;
+  --sidebar-border: #21262d;
+  --topbar-border: #30363d;
+  --nav-active: #58a6ff;
+  --nav-active-bg: rgba(88, 166, 255, 0.08);
+  --nav-active-border: #58a6ff;
+  --tag-bg: #21262d;
+  --tag-text: #58a6ff;
+  --tag-border: #30363d;
+  --input-bg: #21262d;
+  --color-scheme: dark;
+}
+
+[data-theme="narnix-edge"],
+:root[data-theme="narnix-edge"] {
+  --chrome-bg: #061828;
+  --chrome-deep: #040f1a;
+  --canvas-bg: #0b1e30;
+  --card-bg: #112035;
+  --card-border: #1e3a55;
+  --accent-primary: #00c9a7;
+  --accent-light: #00ddb8;
+  --accent-muted-bg: #0a2240;
+  --accent-border: #1e3a55;
+  --text-primary: #daeaf8;
+  --text-secondary: #a8c4d9;
+  --text-muted: #4a7fa5;
+  --text-on-chrome: #daeaf8;
+  --icon-idle: #2e5470;
+  --icon-active: #00c9a7;
+  --status-online: #00c9a7;
+  --status-online-bg: #072219;
+  --status-warn: #f5a623;
+  --status-warn-bg: #1e1200;
+  --status-offline: #e05252;
+  --status-offline-bg: #1a0808;
+  --live-bg: #072219;
+  --live-text: #00c9a7;
+  --sidebar-bg: #061828;
+  --sidebar-border: #0e2236;
+  --topbar-border: #0e2236;
+  --nav-active: #00c9a7;
+  --nav-active-bg: rgba(0, 201, 167, 0.08);
+  --nav-active-border: #00c9a7;
+  --tag-bg: #0a2240;
+  --tag-text: #4a9ecf;
+  --tag-border: #1e3a55;
+  --input-bg: #0b1e30;
+  --color-scheme: dark;
+}
+
+[data-theme="slate-navy"],
+:root[data-theme="slate-navy"] {
+  --chrome-bg: #0d1b2e;
+  --chrome-deep: #0a1626;
+  --canvas-bg: #f4f6f9;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --accent-primary: #1d4ed8;
+  --accent-light: #60a5fa;
+  --accent-muted-bg: #eff6ff;
+  --accent-border: #bfdbfe;
+  --text-primary: #0d1b2e;
+  --text-secondary: #4a5a6e;
+  --text-muted: #647488;
+  --text-on-chrome: #e8edf5;
+  --icon-idle: #5d8ab8;
+  --icon-active: #60a5fa;
+  --status-online: #1a9b5a;
+  --status-online-bg: #f0fdf4;
+  --status-warn: #9a5400;
+  --status-warn-bg: #fffbeb;
+  --status-offline: #c53030;
+  --status-offline-bg: #fff5f5;
+  --live-bg: #eff6ff;
+  --live-text: #1d4ed8;
+  --sidebar-bg: #0d1b2e;
+  --sidebar-border: #1c3049;
+  --topbar-border: #1c3049;
+  --nav-active: #60a5fa;
+  --nav-active-bg: rgba(96, 165, 250, 0.14);
+  --nav-active-border: #60a5fa;
+  --tag-bg: #eff6ff;
+  --tag-text: #1d4ed8;
+  --tag-border: #bfdbfe;
+  --input-bg: #f4f6f9;
+  --color-scheme: light;
+}
+
+/*
+  Tailwind v4 Theme Color Mapping:
+  This automatically generates bg-*, text-*, border-*, and ring-* utilities
+  that instantly update when ThemeProvider changes the CSS variables above.
+*/
+/*
+  `inline` makes generated utilities read the runtime token directly.
+  Otherwise their values are inherited from `:root`, freezing them to the
+  initial Narnix tokens instead of the values set by ThemeProvider.
+*/
+@theme inline {
+  --color-chrome: var(--chrome-bg);
+  --color-chrome-deep: var(--chrome-deep);
+  --color-canvas: var(--canvas-bg);
+  --color-card: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-accent: var(--accent-primary);
+  --color-accent-light: var(--accent-light);
+  --color-accent-muted: var(--accent-muted-bg);
+  --color-accent-border: var(--accent-border);
+  --color-ink-primary: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-ink-onchrome: var(--text-on-chrome);
+  --color-icon-idle: var(--icon-idle);
+  --color-icon-active: var(--icon-active);
+  --color-status-online: var(--status-online);
+  --color-status-online-bg: var(--status-online-bg);
+  --color-status-warn: var(--status-warn);
+  --color-status-warn-bg: var(--status-warn-bg);
+  --color-status-offline: var(--status-offline);
+  --color-status-offline-bg: var(--status-offline-bg);
+  --color-live-bg: var(--live-bg);
+  --color-live-text: var(--live-text);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-topbar-border: var(--topbar-border);
+  --color-nav-active: var(--nav-active);
+  --color-nav-active-bg: var(--nav-active-bg);
+  --color-nav-active-border: var(--nav-active-border);
+  --color-tag-bg: var(--tag-bg);
+  --color-tag-text: var(--tag-text);
+  --color-tag-border: var(--tag-border);
+  --color-input: var(--input-bg);
+}
+
+/* ── System tokens ──────────────────────────────────────────────────────────
+
+  Everything above this line is colour, and colour is the part that changes
+  between themes. Everything below is the product's shape — how round things
+  are, how tall a control is, how big text is, how far a surface lifts off the
+  page. That does not change between a light theme and a dark one, so it is
+  declared once here rather than repeated in every theme.
+
+  These exist because without them there is no such thing as "the" radius. The
+  components had settled on four different ones — rounded-md, rounded-lg,
+  rounded-xl and rounded-full, in almost exactly equal numbers — with nothing
+  to say which was correct for a given surface. Control heights were worse:
+  around sixty ad-hoc values like [32px], [34px], [36px], [40px] and [44px],
+  each one somebody eyeballing a single component.
+
+  Named by what a thing IS rather than how big it is. `rounded-control` says
+  where it belongs; `rounded-lg` only says how it looks, which is why four of
+  them ended up in use at once.
+*/
+@theme {
+  /* Corner radius, by the kind of surface.
+
+     Three steps, not six. A pill for anything fully rounded, one radius for
+     things you interact with, one for the panels they sit on. A surface reads
+     as containing its controls when its corners are slightly rounder than
+     theirs — that relationship is the reason these are separate tokens and not
+     one value. */
+  --radius-control: 0.5rem;   /* buttons, inputs, menu items, tags */
+  --radius-surface: 0.375rem; /* cards, panels, tables, popovers */
+  --radius-overlay: 0.75rem;  /* modals and sheets — the largest surface */
+  --radius-pill: 9999px;      /* badges, avatars, toggles */
+
+  /* Control heights.
+
+     One scale for anything a person clicks or types into, so a button sits
+     level with the input beside it. `md` is the default; `lg` exists because
+     44px is the smallest comfortable pointer target on a touch screen, which
+     is what mobile layouts should reach for. */
+  --spacing-control-sm: 1.75rem;  /* 28px — dense tables, inline actions */
+  --spacing-control-md: 2.25rem;  /* 36px — the default */
+  --spacing-control-lg: 2.75rem;  /* 44px — touch targets */
+
+  /* Type scale.
+
+     Deliberately short. Long scales invite picking whatever looks right in one
+     place, and the result is text-xs against text-[11px] against text-sm with
+     no rule behind any of it. */
+  --text-caption: 0.6875rem;  /* 11px — timestamps, helper text */
+  --text-body-sm: 0.75rem;    /* 12px — table cells, dense UI */
+  --text-body: 0.875rem;      /* 14px — the default */
+  --text-title: 1rem;         /* 16px — panel and dialog headings */
+  --text-display: 1.5rem;     /* 24px — page headings */
+
+  /* Elevation, by how far something is meant to sit off the page.
+
+     Named for the relationship rather than the blur radius: a raised card, a
+     floating menu, an overlay above everything. Six interchangeable shadow
+     sizes gave no way to tell whether a popover should out-shadow a card. */
+  --shadow-raised: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-floating: 0 4px 12px -2px rgb(0 0 0 / 0.12), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-overlay: 0 24px 48px -12px rgb(0 0 0 / 0.25);
+
+  /* Motion.
+
+     Only the easing lives here, because `--ease-*` is a namespace Tailwind
+     generates utilities from and duration is not. The durations are plain
+     variables below, used as `duration-[var(--duration-fast)]`. Declaring them
+     in here would look like it worked and silently produce nothing. */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Motion durations, and the stacking order.
+
+   Neither is a Tailwind theme namespace, so both are plain custom properties.
+   Two durations only: anything slower than `slow` on an interface people use
+   all day stops reading as responsive and starts reading as lag.
+
+   The z-values matter relative to each other and nowhere else: a dropdown
+   opened from inside a modal has to sit above it, and a toast has to sit above
+   both, or a confirmation disappears behind the dialog that asked for it. Gaps
+   of ten leave room to insert a layer without renumbering everything. */
+:root {
+  --duration-fast: 120ms;
+  --duration-slow: 200ms;
+
+  --z-sticky: 20;   /* pinned table headers */
+  --z-dropdown: 50; /* menus, popovers, tooltips */
+  --z-overlay: 100; /* modal backdrops and dialogs */
+  --z-toast: 200;   /* notifications, above everything */
+}

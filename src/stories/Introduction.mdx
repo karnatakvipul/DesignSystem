@@ -1,0 +1,45 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# my Design System
+
+A React component library for building the SLS product family: a data table
+built for real license/report tables (sortable, resizable, selectable,
+server-paginated), a set of form/dropdown/date controls, and a four-theme
+colour system that swaps at runtime with no rebuild.
+
+Use the **Theme** control in the toolbar above to preview every story against
+all four shipped themes — two light, two dark.
+
+## Where to start
+
+- **Foundations** — the token layer: colour, type, radius, control height,
+  elevation, motion, stacking. Read this first; almost everything else in the
+  library is built from these tokens rather than raw Tailwind values.
+- **Components** — one section per component, each with its real prop
+  controls and, where the component has interesting *states* rather than just
+  variants (a `DataTable` with rows selected, a `Checkbox` mid-toggle), a
+  story per state.
+
+## What's covered here vs. in the docs
+
+This is a design-system browser, not the full API reference — it covers the
+`components/common` layer: the primitives every screen is built from. The
+license-domain feature components (form modals, the license toolbar, report
+panels) are documented with full prop tables and worked examples in
+`DOCUMENTATION.md` at the repo root, and the reasoning behind the token
+system itself is in `DESIGN-SYSTEM.md`.
+
+## A note on how these stories are wired
+
+Every story runs inside the library's own `ThemeProvider`, scoped to just that
+story (`global={false}`) rather than the whole Storybook document — so one
+story's theme can never leak into another's, which matters here specifically
+because `@storybook/addon-docs` renders several stories on one page at once.
+
+These stories also double as a regression suite: `@storybook/addon-vitest`
+runs every one of them as a real Playwright/Chromium assertion (`npm test`
+includes a `storybook` project alongside the existing jsdom suite) — a
+component that throws while rendering, in any of its states, fails the build
+the same way a broken unit test would.

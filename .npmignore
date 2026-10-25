@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Source and development files
+src/
+docs/
+scripts/
+.github/
+.storybook/
+storybook-static/
+
+# Environment and logs
+.env*
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configs not needed by consumers
+vite.config.js
+eslint.config.js
+.prettierrc
+Dockerfile*
+docker-compose.yml

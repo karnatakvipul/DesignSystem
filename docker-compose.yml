@@ -1,0 +1,16 @@
+services:
+  storybook:
+    build:
+      context: .
+      # If your file is named 'Dockerfile', change 'Dockerfile.dev' to 'Dockerfile' below
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/library
+      - /library/node_modules
+    environment:
+      - NODE_ENV=development
+      # Mandatory Windows fixes: Forces React/Vite/Webpack to watch for file modifications
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true

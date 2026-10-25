@@ -1,0 +1,103 @@
+{
+  "name": "my Design System",
+  "version": "1.0.20",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "ui-components",
+    "component-library",
+    "tailwindcss",
+    "my Design System"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "dist/index.umd.cjs",
+  "module": "dist/index.es.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.cjs"
+    },
+    "./theme.css": "./dist/theme.css",
+    "./tailwind-preset": "./tailwind-preset.js"
+  },
+  "files": [
+    "dist",
+    "tailwind-preset.js",
+    "README.md",
+    "DOCUMENTATION.md",
+    "BUILDING-AN-APP.md",
+    "DESIGN-SYSTEM.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "dist/*.js",
+    "dist/*.cjs",
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/copy-theme-css.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src",
+    "lint:ci": "eslint src --max-warnings=58",
+    "lint:fix": "eslint src --fix",
+    "verify:package": "node scripts/verify-package-exports.mjs",
+    "verify:tarball": "node scripts/verify-tarball.mjs",
+    "prepublishOnly": "npm run build && npm run verify:package",
+    "preview": "vite preview",
+    "docs:collect": "node scripts/collect-docs.mjs",
+    "docs:dev": "npm run docs:collect && vitepress dev docs",
+    "docs:build": "npm run docs:collect && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@storybook/addon-a11y": "^10.5.10",
+    "@storybook/addon-docs": "^10.5.10",
+    "@storybook/addon-vitest": "^10.5.10",
+    "@storybook/react-vite": "^10.5.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^6.0.4",
+    "@vitest/browser-playwright": "4.1.10",
+    "@vitest/coverage-v8": "4.1.10",
+    "axe-core": "^4.13.0",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-storybook": "^10.5.10",
+    "globals": "^17.8.0",
+    "jsdom": "^29.1.1",
+    "playwright": "latest",
+    "prettier": "^3.9.6",
+    "react-router-dom": "^7.18.2",
+    "storybook": "^10.5.10",
+    "tailwindcss": "^4.3.3",
+    "vite-plugin-css-injected-by-js": "^3.3.1",
+    "vitepress": "^1.6.4",
+    "vitest": "^4.1.10",
+    "vitest-axe": "^0.1.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.26.0",
+    "recharts": "^3.10.1"
+  }
+}

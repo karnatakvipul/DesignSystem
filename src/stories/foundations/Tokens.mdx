@@ -1,0 +1,102 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Shape & Motion" />
+
+# System tokens
+
+Colour changes between the four themes; these do not. Radius, control height,
+elevation, motion and stacking order are shape, not colour, so they're
+declared once in `theme.css` and stay the same on every theme.
+
+Before these existed, the library had settled on four radii in almost exactly
+equal use (36/36/34/38 respectively), six shadows, eight type sizes plus two
+arbitrary pixel values, and around sixty ad-hoc control heights — each one
+somebody eyeballing a single component in isolation. None of those was wrong
+on its own screen. That's exactly the problem: nothing looked broken, and the
+product slowly stopped looking like one product.
+
+## Radius
+
+<div style={{ display: "flex", gap: 24, flexWrap: "wrap", margin: "16px 0" }}>
+  {[
+    { name: "rounded-control", px: 8, use: "Buttons, inputs, menu items, tags" },
+    { name: "rounded-surface", px: 12, use: "Cards, panels, tables, popovers" },
+    { name: "rounded-overlay", px: 16, use: "Modals and sheets" },
+    { name: "rounded-pill", px: 999, use: "Badges, avatars, toggles" },
+  ].map((r) => (
+    <div key={r.name} style={{ textAlign: "center", width: 120 }}>
+      <div
+        style={{
+          height: 64,
+          background: "var(--accent-primary, #2563eb)",
+          borderRadius: Math.min(r.px, 24),
+          marginBottom: 8,
+        }}
+      />
+      <code style={{ fontSize: 12 }}>{r.name}</code>
+      <div style={{ fontSize: 11, opacity: 0.6 }}>{r.px === 999 ? "full" : `${r.px}px`} · {r.use}</div>
+    </div>
+  ))}
+</div>
+
+A surface reads as *containing* its controls when its corners are slightly
+rounder than theirs — that relationship is why control and surface are
+separate tokens rather than one value everywhere.
+
+## Control height
+
+| Token | Value | Use for |
+|---|---|---|
+| `h-control-sm` | 28px | Dense tables, inline actions |
+| `h-control-md` | 36px | The default |
+| `h-control-lg` | 44px | Touch targets |
+
+One scale for anything you click or type into, so a button sits level with
+the input beside it. `lg` is 44px because that's the smallest comfortable
+pointer target on a touch screen — `Button` steps every size up one on small
+viewports and settles back down on a pointer device.
+
+## Elevation
+
+| Token | Use for |
+|---|---|
+| `shadow-raised` | A card lifting off the page |
+| `shadow-floating` | Menus, popovers, dropdowns |
+| `shadow-overlay` | Modals, above everything |
+
+Named for the relationship rather than the blur radius — six interchangeable
+shadow sizes gave no way to answer "should a popover out-shadow a card?" This
+one does, unambiguously: floating always sits above raised, overlay always
+sits above both.
+
+## Motion
+
+`--duration-fast` (120ms) · `--duration-slow` (200ms) · `ease-standard`
+
+Two durations. Anything slower on an interface people use all day stops
+reading as responsive and starts reading as lag. One easing, so movement
+feels like it comes from one place.
+
+These are plain custom properties, **not** Tailwind utilities —
+`--duration-*` isn't a namespace Tailwind generates from, so reach for
+`duration-[var(--duration-fast)]`. Declaring them inside `@theme` looks like
+it works and silently produces nothing.
+
+## Stacking
+
+`--z-sticky` (20) · `--z-dropdown` (50) · `--z-overlay` (100) · `--z-toast` (200)
+
+The values matter relative to each other and nowhere else: a dropdown opened
+inside a modal has to sit above it, and a toast above both, or a confirmation
+disappears behind the dialog that asked for it. Gaps of ten leave room to
+insert a layer without renumbering everything above it.
+
+---
+
+**Adding to the system?** Prefer an existing token — a new one is justified
+when there's a *kind of thing* the scale can't express, not when a value
+would look slightly better. See `DESIGN-SYSTEM.md` in the repo root for the
+full rationale (the "Colour" section lives on the neighbouring **Foundations /
+Colors** page here), and `src/theme/__tests__/designTokens.test.js`, which
+fails a build the moment one of these primitives regresses to a raw radius,
+shadow, or pixel value.

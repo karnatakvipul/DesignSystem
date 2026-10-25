@@ -1,0 +1,59 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ColorGrid, SURFACE_ROWS, TEXT_ROWS, ACCENT_ROWS, STATUS_ROWS } from "./ColorGrid";
+
+<Meta title="Foundations/Colors" />
+
+# Colour
+
+34 tokens per theme, four themes, and every theme defines every token — a missing
+one renders as an unset CSS variable, which is an invisible control on that
+theme alone.
+
+Reach for the semantic name below, never a raw colour. Swatches here are read
+live from `src/theme/tokens.js` — the same object `ThemeProvider` applies at
+runtime — so this page can't quietly drift from what actually ships.
+
+## Surfaces
+
+<ColorGrid rows={SURFACE_ROWS} />
+
+## Text
+
+<ColorGrid rows={TEXT_ROWS} />
+
+**`-onchrome` is not interchangeable with `-primary`.** Chrome is the sidebar
+and header, which are dark in some themes and light in others. Using
+`text-ink-primary` on the sidebar once produced a 1.00:1 contrast ratio in one
+theme — text the exact colour of its own background.
+
+## Accent
+
+<ColorGrid rows={ACCENT_ROWS} />
+
+**`accent-muted` is a badge fill, not a foreground.** It's sized to sit under a
+few words of coloured text, not to be the only signal for a state a user
+depends on. `DataTable`'s row-selection background used to be
+`bg-accent-muted/40` — diluted at 40% over a white/near-white card it
+composited to within **~1.01–1.04:1** of the card's own colour, on *every*
+theme. A selected row and an unselected one were, measurably, the same colour.
+Selection now dilutes `accent-primary` (the foreground) instead — **1.23–1.32:1**
+across the same four themes — because that token is a colour actually meant to
+be seen against a card. The same mistake, found the same way, was also in
+`DateRangePicker`'s "day is in the selected range" highlight.
+
+If you need a *stronger* background than a 15% tint of the foreground allows —
+past roughly 15% the tint starts eating the contrast of any coloured text
+sitting on top of it — reach for a full-strength `bg-accent` with white text
+instead, the way a selected date's two endpoints are marked.
+
+## Status
+
+<ColorGrid rows={STATUS_ROWS} />
+
+### Contrast
+
+Body text must reach 4.5:1 against whatever it sits on. This is checked, not
+assumed: two status colours were found at 3.00:1 and 4.08:1 and were darkened
+(see the comments in `tokens.js` for the exact before/after). When adding a
+colour, check it against every theme's surfaces — a value that is fine on
+three can be unreadable on the fourth.
